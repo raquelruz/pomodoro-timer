@@ -15,6 +15,21 @@ export const Timer = () => {
 		setIsOn((prev) => !prev);
 	};
 
+	const handleModeChange = (newMode) => {
+		setMode(newMode);
+		setTime(TIMER_MODES[newMode].duration);
+		setIsOn(false);
+	};
+
+	const handleNext = () => {
+		const modes = Object.keys(TIMER_MODES);
+
+		const currentIndex = modes.indexOf(mode);
+		const nextIndex = (currentIndex + 1) % modes.length;
+
+		handleModeChange(modes[nextIndex]);
+	};
+
 	useEffect(() => {
 		let intervalId;
 
@@ -31,28 +46,13 @@ export const Timer = () => {
 
 	useEffect(() => {
 		if (time === 0) {
-			setIsOn(false);
+			handleNext();
 		}
 	}, [time]);
 
 	const handleReset = () => {
 		setTime(currentMode.duration);
 		setIsOn(false);
-	};
-
-	const handleModeChange = (newMode) => {
-		setMode(newMode);
-		setTime(TIMER_MODES[newMode].duration);
-		setIsOn(false);
-	};
-
-	const handleNext = () => {
-		const modes = Object.keys(TIMER_MODES);
-
-		const currentIndex = modes.indexOf(mode);
-		const nextIndex = (currentIndex + 1) % modes.length;
-
-		handleModeChange(modes[nextIndex]);
 	};
 
 	const progress = ((currentMode.duration - time) / currentMode.duration) * 100;
