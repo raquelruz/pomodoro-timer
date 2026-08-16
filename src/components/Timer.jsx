@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { TimerDisplay } from "./Timer/TimerDisplay";
 import { TimerControls } from "./Timer/TimerControls";
 import { TIMER_MODES } from "../constants/timer";
+import { TimerModes } from "./Timer/TimerModes";
 
 export const Timer = () => {
 	const [time, setTime] = useState(TIMER_MODES.focus.duration);
@@ -52,10 +53,20 @@ export const Timer = () => {
 		setIsOn(false);
 	};
 
+	const handleModeChange = (newMode) => {
+		setMode(newMode);
+		setTime(TIMER_MODES[newMode].duration);
+		setIsOn(false);
+	}
+
 	const progress = ((currentMode.duration - time) / currentMode.duration) * 100;
 
 	return (
 		<div>
+			<div>
+				<TimerModes mode={mode} handleModeChange={handleModeChange}/>
+			</div>
+
 			<div className="flex justify-center">
 				<div
 					className="flex items-center justify-center rounded-full h-100 w-100"
