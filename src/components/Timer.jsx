@@ -78,7 +78,7 @@ export const Timer = () => {
 					}}
 				>
 					<div className="flex items-center justify-center bg-[#fcf9f6] rounded-full h-[98%] w-[98%]">
-						<TimerDisplay counter={time} />
+						<TimerDisplay time={time} label={currentMode.label}/>
 					</div>
 				</div>
 			</div>
