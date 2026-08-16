@@ -8,6 +8,7 @@ export const Timer = () => {
 	const [time, setTime] = useState(TIMER_MODES.focus.duration);
 	const [isOn, setIsOn] = useState(false);
 	const [mode, setMode] = useState("focus");
+	const [cycles, setCycles] = useState(0);
 
 	const currentMode = TIMER_MODES[mode];
 
@@ -46,13 +47,30 @@ export const Timer = () => {
 
 	useEffect(() => {
 		if (time === 0) {
-			handleNext();
+			if (mode === "focus") {
+				setCycles((prev) => prev + 1);
+
+				const nextCycle = cycles + 1;
+
+				if (nextCycle === 4) {
+					handleModeChange("longBreak");
+				} else {
+					handleModeChange("shortBreak");
+				}
+			} else {
+				if (mode === "longBreak") {
+					setCycles(0);
+				}
+
+				handleModeChange("focus");
+			}
 		}
 	}, [time]);
 
 	const handleReset = () => {
 		setTime(currentMode.duration);
 		setIsOn(false);
+		setCycles(0);
 	};
 
 	const progress = ((currentMode.duration - time) / currentMode.duration) * 100;
