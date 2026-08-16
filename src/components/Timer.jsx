@@ -22,6 +22,12 @@ export const Timer = () => {
 		setIsOn(false);
 	};
 
+	const handleAutoNext = (newMode) => {
+		setMode(newMode);
+		setTime(TIMER_MODES[newMode].duration);
+		setIsOn(true);
+	};
+
 	const handleNext = () => {
 		const modes = Object.keys(TIMER_MODES);
 
@@ -53,16 +59,16 @@ export const Timer = () => {
 				const nextCycle = cycles + 1;
 
 				if (nextCycle === 4) {
-					handleModeChange("longBreak");
+					handleAutoNext("longBreak");
 				} else {
-					handleModeChange("shortBreak");
+					handleAutoNext("shortBreak");
 				}
 			} else {
 				if (mode === "longBreak") {
 					setCycles(0);
 				}
 
-				handleModeChange("focus");
+				handleAutoNext("focus");
 			}
 		}
 	}, [time]);
