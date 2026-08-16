@@ -40,31 +40,27 @@ export const Timer = () => {
 		setIsOn(false);
 	};
 
+	const handleModeChange = (newMode) => {
+		setMode(newMode);
+		setTime(TIMER_MODES[newMode].duration);
+		setIsOn(false);
+	};
+
 	const handleNext = () => {
 		const modes = Object.keys(TIMER_MODES);
 
 		const currentIndex = modes.indexOf(mode);
 		const nextIndex = (currentIndex + 1) % modes.length;
 
-		const nextMode = modes[nextIndex];
-
-		setMode(nextMode);
-		setTime(TIMER_MODES[nextMode].duration);
-		setIsOn(false);
+		handleModeChange(modes[nextIndex]);
 	};
-
-	const handleModeChange = (newMode) => {
-		setMode(newMode);
-		setTime(TIMER_MODES[newMode].duration);
-		setIsOn(false);
-	}
 
 	const progress = ((currentMode.duration - time) / currentMode.duration) * 100;
 
 	return (
 		<div>
 			<div>
-				<TimerModes mode={mode} handleModeChange={handleModeChange}/>
+				<TimerModes mode={mode} handleModeChange={handleModeChange} />
 			</div>
 
 			<div className="flex justify-center">
@@ -78,13 +74,18 @@ export const Timer = () => {
 					}}
 				>
 					<div className="flex items-center justify-center bg-[#fcf9f6] rounded-full h-[98%] w-[98%]">
-						<TimerDisplay time={time} label={currentMode.label}/>
+						<TimerDisplay time={time} label={currentMode.label} />
 					</div>
 				</div>
 			</div>
 
 			<div className="mt-10">
-				<TimerControls isOn={isOn} handleClick={handleClick} handleReset={handleReset} handleNext={handleNext}/>
+				<TimerControls
+					isOn={isOn}
+					handleClick={handleClick}
+					handleReset={handleReset}
+					handleNext={handleNext}
+				/>
 			</div>
 		</div>
 	);

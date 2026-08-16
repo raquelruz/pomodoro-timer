@@ -3,7 +3,7 @@ import { TimerControls } from "./components/Timer/TimerControls"
 
 export const App = () => {
   return (
-    <div>
+    <div className="bg-bg-secondary">
       <h1>Pomodoro timer</h1>
       <Timer />
     </div>
