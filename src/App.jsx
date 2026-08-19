@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Header } from "./components/Header/Header";
-import { Timer } from "./pages/Timer";
+import { TimerPage } from "./pages/TimerPage";
 import { Navbar } from "./components/Navigation/Navbar";
 import { Route, Routes } from "react-router-dom";
+import { TasksPage } from "./pages/TasksPage";
 
 export const App = () => {
 	return (
@@ -13,7 +14,8 @@ export const App = () => {
 
 			<div className="px-4 sm:py-10">
 				<Routes> 
-					<Route path="/" element={<Timer />} />
+					<Route path="/" element={<TimerPage />} />
+					<Route path="/tasks" element={<TasksPage />} />
 				</Routes>
 			</div>
 

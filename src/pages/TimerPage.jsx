@@ -4,7 +4,7 @@ import { TimerControls } from "../components/Timer/TimerControls";
 import { TIMER_MODES } from "../constants/timer";
 import { TimerModes } from "../components/Timer/TimerModes";
 
-export const Timer = () => {
+export const TimerPage = () => {
 	const [time, setTime] = useState(TIMER_MODES.focus.duration);
 	const [isOn, setIsOn] = useState(false);
 	const [mode, setMode] = useState("focus");
