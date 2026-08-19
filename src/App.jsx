@@ -1,11 +1,10 @@
-import { Timer } from "./components/Timer"
-import { TimerControls } from "./components/Timer/TimerControls"
+import { Timer } from "./components/Timer";
 
 export const App = () => {
-  return (
-    <div className="bg-bg-secondary">
-      <h1>Pomodoro timer</h1>
-      <Timer />
-    </div>
-  )
-}
+	return (
+		<div
+			className="min-h-screen bg-bg-secondary">
+			<Timer />
+		</div>
+	);
+};
