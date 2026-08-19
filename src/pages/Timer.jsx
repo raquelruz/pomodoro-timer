@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { TimerDisplay } from "./Timer/TimerDisplay";
-import { TimerControls } from "./Timer/TimerControls";
+import { TimerDisplay } from "../components/Timer/TimerDisplay";
+import { TimerControls } from "../components/Timer/TimerControls";
 import { TIMER_MODES } from "../constants/timer";
-import { TimerModes } from "./Timer/TimerModes";
+import { TimerModes } from "../components/Timer/TimerModes";
 
 export const Timer = () => {
 	const [time, setTime] = useState(TIMER_MODES.focus.duration);
